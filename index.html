@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#ffffff" />
+
+  <title>Ramesh Kumar & Tamil Selvi — Wedding Invitation</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ballet&family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="opening" class="opening" aria-label="Wedding invitation opening">
+    <video id="openingVideo" class="opening-video" playsinline preload="auto">
+      <source src="./assets/opening.mp4" type="video/mp4" />
+    </video>
+    <div class="opening-shade"></div>
+    <button id="sealButton" class="seal-button" aria-label="Tap the wax seal to open"></button>
+    <div id="tapText" class="tap-text">Tap the seal to open</div>
+  </div>
+
+  <audio id="bgm" src="./assets/background.mp3" loop preload="auto"></audio>
+
+  <div class="floating-decor" aria-hidden="true">
+    <span class="petal p1">✦</span><span class="petal p2">✿</span><span class="petal p3">•</span>
+    <span class="petal p4">✦</span><span class="petal p5">•</span><span class="petal p6">✿</span>
+    <span class="petal p7">•</span><span class="petal p8">✦</span><span class="petal p9">✿</span>
+  </div>
+
+  <main id="invitation" class="invitation" aria-hidden="true">
+    <section class="hero section reveal">
+      <div class="ganesha-wrap">
+        <img class="ganesha" src="https://pub-1953a6673e864f3488c645252f75de98.r2.dev/may/Hemadri%20%26%20Ravindra/GAnesha%20Icon.png" alt="Lord Ganesha" />
+      </div>
+      <p class="tamil-heading">திருமணம் அழைப்பிதழ்</p>
+      <div class="kural">
+        <p><span class="kural-line">அன்பும் அறனும் உடைத்தாயின் இல்வாழ்க்கை</span><span class="kural-line">பண்பும் பயனும் அது.</span></p>
+        <span>— திருக்குறள் 45</span>
+        <p><span>கணவன் மனைவியருக்குள் அன்புப் பிணைப்பும், அறநெறிப்படியே நிகழ்ந்து வருவதும் உடையதானால், இல்வாழ்க்கையில் பண்பும் பயனும் அந்த வாழ்வே ஆகும்</span></p>
+      </div>
+      <p class="invite-copy">With the blessings of the Almighty and our beloved families,<br>we joyfully invite you to grace the wedding of</p>
+      <div class="couple-block">
+        <div class="person">
+          <div class="couple-name">Ramesh Kumar</div>
+          <div class="parent-line">S/o Mr. M. Pitchai &amp; Mrs. P. Ramuthai</div>
+        </div>
+        <div class="ampersand">&amp;</div>
+        <div class="person">
+          <div class="couple-name">Tamil Selvi</div>
+          <div class="parent-line">D/o Mr. A. Name &amp; Mrs. R. Name</div>
+        </div>
+      </div>
+      <div class="scroll-cue">Scroll to Reveal <span>↓</span></div>
+    </section>
+
+    <section class="section date-section reveal">
+      <p class="eyebrow">The Date</p>
+      <h2>Save the Date</h2>
+      <p class="section-intro">Scratch below to reveal our wedding date</p>
+      <div class="reveal-grid">
+        <button class="reveal-card" data-reveal aria-label="Scratch to reveal day">
+          <div class="reveal-content"><span class="label">Day</span><strong>15</strong></div>
+          <div class="scratch-cover"><span>Date</span><small>↑ SCRATCH</small></div>
+        </button>
+        <button class="reveal-card" data-reveal aria-label="Scratch to reveal month">
+          <div class="reveal-content"><span class="label">Month</span><strong>November</strong></div>
+          <div class="scratch-cover"><span>Month</span><small>↑ SCRATCH</small></div>
+        </button>
+        <button class="reveal-card" data-reveal aria-label="Scratch to reveal year">
+          <div class="reveal-content"><span class="label">Year</span><strong>2026</strong></div>
+          <div class="scratch-cover"><span>Year</span><small>↑ SCRATCH</small></div>
+        </button>
+      </div>
+      <p class="date-line">A new chapter, woven with two hearts and the blessings of family</p>
+      <p class="location-line">Thirumanam&nbsp; 15 · 11 · 2026 · Tiruppur</p>
+      <div id="countdown" class="countdown" aria-label="Countdown to wedding">
+        <div><strong id="days">00</strong><span>Days</span></div>
+        <div><strong id="hours">00</strong><span>Hours</span></div>
+        <div><strong id="mins">00</strong><span>Mins</span></div>
+        <div><strong id="secs">00</strong><span>Secs</span></div>
+      </div>
+      <div id="celebrationBurst" class="celebration-burst" aria-hidden="true"></div>
+    </section>
+
+    <section class="section story-section reveal">
+      <p class="eyebrow">Our Story</p>
+      <h2>Our Little<br>Story</h2>
+      <p class="story-lead">Two hearts, two families, one beautiful beginning — and a new chapter waiting to unfold.</p>
+      <div class="story-frame">
+        <div id="storyTrack" class="story-track">
+          <img src="./assets/story-01.png" alt="Our story — chapter 1" draggable="false">
+          <img src="./assets/story-02.png" alt="Our story — chapter 2" draggable="false">
+          <img src="./assets/story-03.png" alt="Our story — chapter 3" draggable="false">
+          <img src="./assets/story-04.png" alt="Our story — chapter 4" draggable="false">
+          <img src="./assets/story-05.png" alt="Our story — chapter 5" draggable="false">
+        </div>
+      </div>
+      <div class="story-controls">
+        <button id="storyPrev" class="story-btn" aria-label="Previous story photo">←</button>
+        <div class="story-meta"><span id="storyCount">01 / 05</span><span>swipe or tap to continue</span></div>
+        <button id="storyNext" class="story-btn" aria-label="Next story photo">→</button>
+      </div>
+    </section>
+
+    <section class="section ceremonies reveal">
+      <p class="eyebrow">The Celebrations Unfold</p>
+      <h2>Sacred Ceremonies</h2>
+
+      <article class="event-card">
+        <div class="day-divider" aria-label="Day 1 Reception"><span>Day 1</span><b>Reception</b></div>
+        <video class="event-video lazy-video" playsinline muted loop preload="metadata">
+          <source src="./assets/reception.mp4" type="video/mp4">
+        </video>
+        <div class="event-info-card reception-info">
+          <div class="event-kicker">Saturday · 14 November 2026</div>
+          <h3>Reception</h3>
+          <p class="event-time">From 7:45 PM onwards</p>
+          <p class="venue">Kurinjii Mahal Muthanampalayam<br>Tiruppur</p>
+          <a class="map-link" target="_blank" rel="noopener" href="https://maps.app.goo.gl/NVXcCCZq2K7c6fYa9?g_st=aw">⌖ &nbsp; View on Map</a>
+          <div class="mini-schedule">
+            <div><span>7:00 PM</span><b>Welcoming</b></div>
+            <div><span>7:15 PM</span><b>DJ</b></div>
+            <div><span>8:30 PM</span><b>Feast</b></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="event-card">
+        <div class="day-divider" aria-label="Day 2 Wedding"><span>Day 2</span><b>Wedding</b></div>
+        <video class="event-video lazy-video" playsinline muted loop preload="metadata">
+          <source src="./assets/wedding.mp4" type="video/mp4">
+        </video>
+        <div class="event-info-card wedding-info">
+          <div class="event-kicker">Sunday · 15 November 2026</div>
+          <h3>Wedding</h3>
+          <p class="event-time">7:45 AM onwards</p>
+          <p class="venue">Kurinjii Mahal Muthanampalayam<br>Tiruppur</p>
+          <a class="map-link" target="_blank" rel="noopener" href="https://maps.app.goo.gl/NVXcCCZq2K7c6fYa9?g_st=aw">⌖ &nbsp; View on Map</a>
+          <div class="mini-schedule">
+            <div><span>7:00 AM</span><b>Welcoming</b></div>
+            <div><span>7:45 — 8:45 AM</span><b>Muhurtham</b></div>
+            <div><span>9:00 AM</span><b>Blessings</b></div>
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <section class="section venue-section reveal" id="venue">
+      <p class="eyebrow">The Venue</p>
+      <h2>Find the Venue</h2>
+      <p class="section-intro">Both celebrations are held under one roof</p>
+
+      <div class="map-card">
+        <div class="map-frame" id="mapFrame">
+          <button type="button" class="map-facade" id="mapFacade" aria-label="Load the interactive map for Kurinjii Mahal">
+            <svg class="map-art" viewBox="0 0 400 280" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <rect width="400" height="280" fill="#f6eee6"/>
+              <g fill="#ecdfd2">
+                <rect x="10" y="80" width="95" height="40" rx="6"/>
+                <rect x="160" y="60" width="60" height="55" rx="6"/>
+                <rect x="250" y="130" width="70" height="60" rx="6"/>
+                <rect x="365" y="60" width="50" height="130" rx="6"/>
+                <rect x="160" y="230" width="70" height="40" rx="6"/>
+              </g>
+              <rect x="20" y="225" width="85" height="45" rx="14" fill="#e3e8d5"/>
+              <g fill="none" stroke="#fff" stroke-linecap="round">
+                <path d="M-10 70 L410 40" stroke-width="12"/>
+                <path d="M-10 195 L410 220" stroke-width="12"/>
+                <path d="M120 -10 L148 290" stroke-width="12"/>
+                <path d="M335 -10 L352 290" stroke-width="12"/>
+                <path d="M-10 135 L410 122" stroke-width="6"/>
+                <path d="M232 -10 L240 290" stroke-width="6"/>
+              </g>
+              <path class="route-line" pathLength="1" d="M30 250 C 90 240, 110 190, 170 185 S 250 170, 262 130 S 290 108, 300 100" fill="none" stroke="#caa34a" stroke-width="4" stroke-linecap="round"/>
+              <circle cx="30" cy="250" r="6" fill="#fff" stroke="#caa34a" stroke-width="3"/>
+              <ellipse class="ripple" cx="300" cy="100" rx="16" ry="6" fill="none" stroke="#8e3d47" stroke-width="2"/>
+              <ellipse class="ripple r2" cx="300" cy="100" rx="16" ry="6" fill="none" stroke="#8e3d47" stroke-width="2"/>
+              <g transform="translate(300 100)">
+                <g class="pin">
+                  <ellipse cx="0" cy="1" rx="9" ry="3" fill="rgba(52,39,36,.25)"/>
+                  <path d="M0 0 C-14 -16 -18 -24 -18 -32 a18 18 0 1 1 36 0 c0 8 -4 16 -18 32z" fill="#8e3d47"/>
+                  <circle cx="0" cy="-32" r="7" fill="#fff"/>
+                </g>
+              </g>
+            </svg>
+            <span class="map-facade-cta">Tap to explore the map</span>
+          </button>
+        </div>
+
+        <div class="venue-details">
+          <h3>Kurinjii Mahal</h3>
+          <p class="venue-address">Muthanampalayam, Tiruppur</p>
+          <div class="mini-schedule">
+            <div><span>Sat 14 Nov · 7:45 PM</span><b>Reception</b></div>
+            <div><span>Sun 15 Nov · 7:45 AM</span><b>Wedding</b></div>
+          </div>
+          <div class="venue-actions">
+            <a class="map-link" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=Kurinjii%20Mahal%20Muthanampalayam%20Tiruppur">Get Directions</a>
+            <a class="ghost-btn" target="_blank" rel="noopener" href="https://maps.app.goo.gl/NVXcCCZq2K7c6fYa9?g_st=aw">Open in Maps</a>
+            <button type="button" class="ghost-btn" id="copyAddress">Copy address</button>
+            <a class="ghost-btn" id="shareWhatsapp" target="_blank" rel="noopener" href="https://wa.me/">Share</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section wishes-section reveal" id="wishes">
+      <p class="eyebrow">Blessings</p>
+      <h2>Send Your Wishes</h2>
+      <p class="section-intro">Leave a few words for Ramesh &amp; Tamil Selvi. They will read every one.</p>
+
+      <div class="wish-card" id="wishCard">
+        <svg class="envelope" viewBox="0 0 120 84" aria-hidden="true">
+          <rect x="2" y="2" width="116" height="80" rx="8" fill="#fffaf5" stroke="currentColor" stroke-width="2"/>
+          <path d="M4 6 L60 48 L116 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          <circle cx="60" cy="48" r="11" fill="currentColor"/>
+          <path d="M60 54 c-6-4-8-7-8-10 a4 4 0 0 1 8-1 a4 4 0 0 1 8 1 c0 3-2 6-8 10z" fill="#fff"/>
+        </svg>
+
+        <form id="wishForm" class="wish-form" novalidate>
+          <div class="field">
+            <label for="wishName">Your name</label>
+            <input id="wishName" name="name" type="text" maxlength="40" autocomplete="name" placeholder="Karthik &amp; family" required>
+          </div>
+          <div class="field">
+            <label for="wishRelation">You are our</label>
+            <select id="wishRelation" name="relation">
+              <option value="">Choose (optional)</option>
+              <option>Family</option>
+              <option>Relative</option>
+              <option>Friend</option>
+              <option>Colleague</option>
+              <option>Neighbour</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="wishMessage">Your message</label>
+            <textarea id="wishMessage" name="message" rows="4" maxlength="300" placeholder="Write your blessing here" required></textarea>
+            <div class="field-foot">
+              <span id="wishError" class="field-error" role="alert"></span>
+              <span id="wishCount" class="field-count">0 / 300</span>
+            </div>
+          </div>
+          <p class="chip-label">Tap to add a blessing</p>
+          <div class="chip-row">
+            <button type="button" class="chip" data-text="Congratulations!">Congratulations!</button>
+            <button type="button" class="chip" data-text="Happy married life.">Happy married life</button>
+            <button type="button" class="chip" data-text="God bless you both.">God bless you both</button>
+            <button type="button" class="chip" data-text="Wishing you a lifetime of love.">A lifetime of love</button>
+            <button type="button" class="chip" data-text="திருமண வாழ்த்துக்கள்!">திருமண வாழ்த்துக்கள்</button>
+            <button type="button" class="chip" data-text="வாழ்க வளமுடன்!">வாழ்க வளமுடன்</button>
+          </div>
+          <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button class="send-btn" id="wishSend" type="submit"><span id="wishSendLabel">Send Wishes</span></button>
+        </form>
+
+        <div class="wish-thanks" id="wishThanks" hidden>
+          <svg class="thanks-heart" viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M12 21s-8-5.2-8-11a4.6 4.6 0 0 1 8-3 4.6 4.6 0 0 1 8 3c0 5.8-8 11-8 11z"/></svg>
+          <p class="thanks-title" id="thanksTitle">Thank you</p>
+          <p class="thanks-copy">Your blessing is on its way to the couple.</p>
+          <div class="thanks-actions">
+            <button type="button" class="ghost-btn" id="seeWish">See it below</button>
+            <button type="button" class="ghost-btn" id="writeAnother">Write another</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="wish-wall-head" id="wishWallHead">
+        <h3>Blessings so far</h3>
+        <span class="wish-total" id="wishTotal"></span>
+      </div>
+      <div class="wish-wall" id="wishWall" aria-live="polite"></div>
+      <button type="button" class="ghost-btn wish-more" id="wishMore" hidden>Show more blessings</button>
+    </section>
+
+    <section class="section closing reveal">
+      <div class="om">ॐ</div>
+      <p>Bound by sacred vows, blessed by two loving families, and graced by the Almighty —<br>we begin our forever with grateful, joyful hearts.</p>
+      <p>We cannot wait to celebrate this beautiful chapter with you.</p>
+      <div class="closing-names">Ramesh Kumar 
+        &amp; Tamil Selvi</div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="footer-love">Made with ❤️ by</div>
+      <a class="instagram-pill" href="https://dkdigitalpresence.latesttrends.in/" target="_blank" rel="noopener noreferrer" aria-label="Open @craft_and_celebrate on Instagram">
+        <span class="instagram-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" role="img"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.4" cy="6.7" r="1.1" fill="currentColor"/></svg>
+        </span>
+        <span>Dineshkumar DK Digital Presence</span>
+      </a>
+    </footer>
+  </main>
+
+  <div id="wishBurst" class="wish-burst" aria-hidden="true"></div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <button id="musicToggle" class="music-toggle" type="button" aria-label="Turn music off" aria-pressed="true">
+    <span class="music-icon" aria-hidden="true">♪</span>
+    <span id="musicLabel">Music On</span>
+  </button>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
