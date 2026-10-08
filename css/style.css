@@ -1808,3 +1808,303 @@ h2, .event-card h3 {
     .pin { opacity: 1 }
     .thanks-heart path { stroke-dashoffset: 0; fill-opacity: 1 }
 }
+
+/* =========================================================
+   WISHES v2: more attractive
+========================================================= */
+.wishes-section {
+    position: relative;
+    background: radial-gradient(ellipse at 50% 16%,#fbeef0 0%,#fff 68%)
+}
+
+.wishes-section > *:not(.wish-hearts) {
+    position: relative;
+    z-index: 1
+}
+
+.wish-hearts {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none
+}
+
+.wish-hearts span {
+    position: absolute;
+    bottom: -30px;
+    left: var(--l);
+    font-size: var(--s,16px);
+    color: #e5a9b2;
+    opacity: 0;
+    animation: heartRise var(--t,12s) ease-in var(--dl,0s) infinite
+}
+
+@keyframes heartRise {
+    0% { opacity: 0; transform: translate(0,0) }
+    15% { opacity: .55 }
+    100% { opacity: 0; transform: translate(var(--dx,20px),-90vh) }
+}
+
+/* Gold-foil heading */
+.wishes-section h2 {
+    color: var(--accent)
+}
+
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+    .wishes-section h2 {
+        background: linear-gradient(100deg,#8e3d47 30%,#caa34a 50%,#8e3d47 70%) 0 0 / 220% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: foil 6s linear infinite;
+        padding: 0 .1em .08em
+    }
+}
+
+@keyframes foil {
+    to { background-position: -220% 0 }
+}
+
+.wish-orn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: -4px auto 18px;
+    color: #c9a858;
+    font-size: .8rem
+}
+
+.wish-orn:before,
+.wish-orn:after {
+    content: "";
+    width: 64px;
+    height: 1px;
+    background: linear-gradient(90deg,transparent,#c9a858)
+}
+
+.wish-orn:after {
+    transform: scaleX(-1)
+}
+
+/* Letter card */
+.wish-card {
+    margin-top: 40px;
+    padding-top: 50px;
+    background: linear-gradient(180deg,#fffdfb,#fff 40%);
+    box-shadow: 0 18px 44px rgba(65,42,35,.1)
+}
+
+.wish-card:after {
+    content: "";
+    position: absolute;
+    inset: 9px;
+    border: 1px solid rgba(202,163,74,.4);
+    border-radius: 17px;
+    pointer-events: none
+}
+
+.corner {
+    position: absolute;
+    font-style: normal;
+    font-size: .6rem;
+    line-height: 1;
+    color: #c9a858;
+    pointer-events: none
+}
+
+.corner.tl { top: 14px; left: 16px }
+.corner.tr { top: 14px; right: 16px }
+.corner.bl { bottom: 14px; left: 16px }
+.corner.br { bottom: 14px; right: 16px }
+
+.wax-seal {
+    position: absolute;
+    left: 50%;
+    top: -28px;
+    width: 56px;
+    height: 56px;
+    margin-left: -28px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%,#b35560,#8d3b45 60%,#6f2a33);
+    box-shadow: 0 8px 18px rgba(111,42,51,.35),inset 0 0 0 3px rgba(255,255,255,.14);
+    z-index: 4;
+    animation: sealBeat 3.2s ease-in-out infinite
+}
+
+.wax-seal svg {
+    width: 25px;
+    height: 25px;
+    fill: #f3d9a0
+}
+
+@keyframes sealBeat {
+    0%,70%,100% { transform: scale(1) }
+    80% { transform: scale(1.12) }
+    90% { transform: scale(1) }
+}
+
+/* Sticker picker */
+.stickers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0 0 24px;
+    padding: 0;
+    border: 0;
+    min-width: 0
+}
+
+.stickers legend {
+    padding: 0;
+    margin-bottom: 10px
+}
+
+.stickers label {
+    position: relative
+}
+
+.stickers input {
+    position: absolute;
+    opacity: 0;
+    inset: 0
+}
+
+.stickers span {
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 1px solid #e3d6cf;
+    background: #fff;
+    font-size: 1.35rem;
+    cursor: pointer;
+    transition: transform .25s cubic-bezier(.3,1.6,.5,1),background .2s ease,border-color .2s ease,box-shadow .2s ease
+}
+
+.stickers input:hover + span {
+    transform: translateY(-2px)
+}
+
+.stickers input:checked + span {
+    transform: scale(1.14);
+    border-color: var(--accent);
+    background: #fbeff0;
+    box-shadow: 0 0 0 4px rgba(142,61,71,.1)
+}
+
+.stickers input:focus-visible + span {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px
+}
+
+.send-btn {
+    background: linear-gradient(135deg,#9c4651,#7f333d);
+    padding: 17px 22px
+}
+
+/* Wall: pastel cards with initials */
+.wish-wall-head h3 {
+    background: none;
+    -webkit-text-fill-color: currentColor
+}
+
+.wish-note {
+    padding: 24px 20px 20px;
+    background: var(--bg,#fffaf5);
+    border-color: var(--bd,#eadfd8)
+}
+
+.wish-note.v0 { --bg: #fffaf5; --bd: #eadfd8; --av: #8e3d47 }
+.wish-note.v1 { --bg: #fdf0f2; --bd: #f1d3d8; --av: #b05a67 }
+.wish-note.v2 { --bg: #f7f1fc; --bd: #e2d5ef; --av: #7d5ea0 }
+.wish-note.v3 { --bg: #fbf5e3; --bd: #eadcb0; --av: #a98529 }
+
+.wish-note:before {
+    content: "";
+    top: -5px;
+    left: 50%;
+    width: 11px;
+    height: 11px;
+    margin-left: -5px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%,#e8cf8a,#b88d3c);
+    box-shadow: 0 2px 4px rgba(65,42,35,.3);
+    opacity: 1
+}
+
+.wish-sticker {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    font-size: 1.6rem;
+    line-height: 1;
+    transition: transform .4s cubic-bezier(.3,1.6,.5,1)
+}
+
+.wish-note:hover .wish-sticker {
+    transform: rotate(14deg) scale(1.2)
+}
+
+.wish-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-right: 40px
+}
+
+.wish-avatar {
+    flex: 0 0 auto;
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--av,#8e3d47);
+    color: #fff;
+    font-family: 'Cormorant Garamond',Georgia,serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    box-shadow: 0 0 0 3px #fff,0 0 0 4px var(--bd,#eadfd8)
+}
+
+.wish-who {
+    display: flex;
+    flex-direction: column;
+    min-width: 0
+}
+
+.wish-who .wish-name {
+    font-size: 1.7rem
+}
+
+.wish-who .wish-tag {
+    margin-top: 2px
+}
+
+.wish-note p {
+    margin: 14px 0 0;
+    padding-top: 14px;
+    border-top: 1px dashed var(--bd,#eadfd8)
+}
+
+.thanks-sticker {
+    display: block;
+    font-size: 2rem;
+    margin-bottom: 4px;
+    animation: thanksIn .7s cubic-bezier(.2,.9,.3,1.2) .5s both
+}
+
+@media(max-width: 600px) {
+    .wish-card {
+        padding-top: 46px
+    }
+
+    .stickers span {
+        width: 42px;
+        height: 42px
+    }
+}
