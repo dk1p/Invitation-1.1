@@ -98,11 +98,12 @@
           <img src="./assets/story-03.png" alt="Our story — chapter 3" draggable="false">
           <img src="./assets/story-04.png" alt="Our story — chapter 4" draggable="false">
           <img src="./assets/story-05.png" alt="Our story — chapter 5" draggable="false">
+          <img src="./assets/story-06.png" alt="Our story — chapter 6" draggable="false">
         </div>
       </div>
       <div class="story-controls">
         <button id="storyPrev" class="story-btn" aria-label="Previous story photo">←</button>
-        <div class="story-meta"><span id="storyCount">01 / 05</span><span>swipe or tap to continue</span></div>
+        <div class="story-meta"><span id="storyCount">01 / 06</span><span>swipe or tap to continue</span></div>
         <button id="storyNext" class="story-btn" aria-label="Next story photo">→</button>
       </div>
     </section>
@@ -211,11 +212,26 @@
     </section>
 
     <section class="section wishes-section reveal" id="wishes">
+      <div class="wish-hearts" aria-hidden="true">
+        <span style="--l:6%;--s:14px;--t:13s;--dl:0s;--dx:24px">♥</span>
+        <span style="--l:18%;--s:20px;--t:16s;--dl:-5s;--dx:-18px">♥</span>
+        <span style="--l:33%;--s:12px;--t:12s;--dl:-9s;--dx:22px">♥</span>
+        <span style="--l:48%;--s:18px;--t:17s;--dl:-2s;--dx:-26px">♥</span>
+        <span style="--l:62%;--s:13px;--t:14s;--dl:-7s;--dx:18px">♥</span>
+        <span style="--l:76%;--s:22px;--t:18s;--dl:-11s;--dx:-20px">♥</span>
+        <span style="--l:89%;--s:15px;--t:13s;--dl:-4s;--dx:16px">♥</span>
+      </div>
+
       <p class="eyebrow">Blessings</p>
       <h2>Send Your Wishes</h2>
-      <p class="section-intro">Leave a few words for Ramesh &amp; Tamil Selvi. They will read every one.</p>
+      <div class="wish-orn" aria-hidden="true"><span>♥</span></div>
+      <p class="section-intro">Leave a few words for Ramesh &amp; Tamil Selvi. Every wish is delivered straight to them.</p>
 
       <div class="wish-card" id="wishCard">
+        <span class="wax-seal" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s-8-5.2-8-11a4.6 4.6 0 0 1 8-3 4.6 4.6 0 0 1 8 3c0 5.8-8 11-8 11z"/></svg></span>
+        <i class="corner tl" aria-hidden="true">✦</i><i class="corner tr" aria-hidden="true">✦</i>
+        <i class="corner bl" aria-hidden="true">✦</i><i class="corner br" aria-hidden="true">✦</i>
+
         <svg class="envelope" viewBox="0 0 120 84" aria-hidden="true">
           <rect x="2" y="2" width="116" height="80" rx="8" fill="#fffaf5" stroke="currentColor" stroke-width="2"/>
           <path d="M4 6 L60 48 L116 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
@@ -256,14 +272,25 @@
             <button type="button" class="chip" data-text="திருமண வாழ்த்துக்கள்!">திருமண வாழ்த்துக்கள்</button>
             <button type="button" class="chip" data-text="வாழ்க வளமுடன்!">வாழ்க வளமுடன்</button>
           </div>
+          <fieldset class="stickers">
+            <legend class="chip-label">Pick a sticker for your card</legend>
+            <label><input type="radio" name="sticker" value="🌸" checked><span>🌸</span></label>
+            <label><input type="radio" name="sticker" value="💐"><span>💐</span></label>
+            <label><input type="radio" name="sticker" value="✨"><span>✨</span></label>
+            <label><input type="radio" name="sticker" value="❤️"><span>❤️</span></label>
+            <label><input type="radio" name="sticker" value="🙏"><span>🙏</span></label>
+            <label><input type="radio" name="sticker" value="🎊"><span>🎊</span></label>
+            <label><input type="radio" name="sticker" value="🪔"><span>🪔</span></label>
+          </fieldset>
           <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
           <button class="send-btn" id="wishSend" type="submit"><span id="wishSendLabel">Send Wishes</span></button>
         </form>
 
         <div class="wish-thanks" id="wishThanks" hidden>
           <svg class="thanks-heart" viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M12 21s-8-5.2-8-11a4.6 4.6 0 0 1 8-3 4.6 4.6 0 0 1 8 3c0 5.8-8 11-8 11z"/></svg>
+          <span class="thanks-sticker" id="thanksSticker" aria-hidden="true">🌸</span>
           <p class="thanks-title" id="thanksTitle">Thank you</p>
-          <p class="thanks-copy">Your blessing is on its way to the couple.</p>
+          <p class="thanks-copy">Your blessing has been delivered to the couple.</p>
           <div class="thanks-actions">
             <button type="button" class="ghost-btn" id="seeWish">See it below</button>
             <button type="button" class="ghost-btn" id="writeAnother">Write another</button>
