@@ -562,14 +562,24 @@ let dragging = false;
 
 
 
+function storyTotal() {
+  return track.querySelectorAll('img').length;
+}
+
+
 function updateStory() {
+
+  const last = storyTotal() - 1;
+
+  storyIndex = Math.max(0, Math.min(last, storyIndex));
+
 
   track.style.transform =
     `translateX(-${storyIndex * 100}%)`;
 
 
   storyCount.textContent =
-    `${String(storyIndex + 1).padStart(2, '0')} / 05`;
+    `${String(storyIndex + 1).padStart(2, '0')} / ${String(last + 1).padStart(2, '0')}`;
 
 
   prevBtn.disabled =
@@ -577,7 +587,7 @@ function updateStory() {
 
 
   nextBtn.disabled =
-    storyIndex === 4;
+    storyIndex === last;
 
 
   prevBtn.style.opacity =
@@ -587,7 +597,7 @@ function updateStory() {
 
 
   nextBtn.style.opacity =
-    storyIndex === 4
+    storyIndex === last
       ? '.45'
       : '1';
 
@@ -601,7 +611,7 @@ function goStory(step) {
     Math.max(
       0,
       Math.min(
-        4,
+        storyTotal() - 1,
         storyIndex + step
       )
     );
@@ -706,6 +716,23 @@ frame.addEventListener(
 
   }
 );
+
+
+/* A missing image file is removed from the carousel automatically */
+
+track.querySelectorAll('img').forEach(img => {
+
+  if (img.complete && img.naturalWidth === 0) {
+    img.remove();
+    return;
+  }
+
+  img.addEventListener('error', () => {
+    img.remove();
+    updateStory();
+  });
+
+});
 
 
 updateStory();
@@ -828,6 +855,16 @@ document
   --------------------------------------------------------- */
   const WISHES_ENDPOINT = '';
 
+  /* ---------------------------------------------------------
+     EMAIL
+     Quickest option: put the couple's email here and every
+     wish is mailed to it through FormSubmit.co (free; the very
+     first wish triggers one confirmation email you must click).
+     Do NOT fill this if you use the Apps Script above, which
+     already emails you (set NOTIFY_EMAIL in Code.gs).
+  --------------------------------------------------------- */
+  const WISHES_EMAIL = '';
+
   const VENUE = {
     name: 'Kurinjii Mahal',
     address: 'Kurinjii Mahal, Muthanampalayam, Tiruppur',
@@ -835,6 +872,7 @@ document
     link: 'https://maps.app.goo.gl/NVXcCCZq2K7c6fYa9?g_st=aw'
   };
 
+  const STICKERS = ['🌸', '💐', '✨', '❤️', '🙏', '🎊', '🪔'];
   const WISH_STORE = 'rt-wedding-wishes-v1';
   const WISH_LAST = 'rt-wedding-wish-last';
   const WISH_PAGE = 6;
@@ -949,6 +987,7 @@ document
   const wishSendLabel = document.getElementById('wishSendLabel');
   const wishThanks = document.getElementById('wishThanks');
   const thanksTitle = document.getElementById('thanksTitle');
+  const thanksSticker = document.getElementById('thanksSticker');
   const seeWish = document.getElementById('seeWish');
   const writeAnother = document.getElementById('writeAnother');
   const wishWall = document.getElementById('wishWall');
@@ -1008,6 +1047,7 @@ document
       id: String(raw.id || makeId()).slice(0, 64),
       name,
       relation: cleanText(raw.relation, 20),
+      sticker: STICKERS.includes(raw.sticker) ? raw.sticker : '🌸',
       message,
       ts: Number(raw.ts) || 0
     };
@@ -1035,31 +1075,48 @@ document
 
   function buildNote(wish, index, stagger, fresh) {
 
+    const variant = [...wish.id].reduce((n, ch) => n + ch.charCodeAt(0), 0) % 4;
+
     const note = document.createElement('article');
-    note.className = 'wish-note' + (fresh ? ' fresh' : '');
+    note.className = `wish-note v${variant}` + (fresh ? ' fresh' : '');
     note.style.setProperty('--tilt', index % 3 === 2 ? '0deg' : (index % 2 ? '.6deg' : '-.6deg'));
     note.style.setProperty('--d', `${stagger * 0.08}s`);
     note.dataset.id = wish.id;
 
-    const text = document.createElement('p');
-    text.textContent = wish.message;
+    const sticker = document.createElement('span');
+    sticker.className = 'wish-sticker';
+    sticker.setAttribute('aria-hidden', 'true');
+    sticker.textContent = wish.sticker;
 
-    const from = document.createElement('div');
-    from.className = 'wish-from';
+    const head = document.createElement('div');
+    head.className = 'wish-head';
+
+    const avatar = document.createElement('span');
+    avatar.className = 'wish-avatar';
+    avatar.setAttribute('aria-hidden', 'true');
+    avatar.textContent = ([...wish.name][0] || '♥').toUpperCase();
+
+    const who = document.createElement('div');
+    who.className = 'wish-who';
 
     const name = document.createElement('span');
     name.className = 'wish-name';
     name.textContent = wish.name;
-    from.appendChild(name);
+    who.appendChild(name);
 
     if (wish.relation) {
       const tag = document.createElement('span');
       tag.className = 'wish-tag';
       tag.textContent = wish.relation;
-      from.appendChild(tag);
+      who.appendChild(tag);
     }
 
-    note.append(text, from);
+    head.append(avatar, who);
+
+    const text = document.createElement('p');
+    text.textContent = wish.message;
+
+    note.append(sticker, head, text);
 
     noteObserver.observe(note);
 
@@ -1235,7 +1292,7 @@ document
 
     if (reduceMotion || !wishBurst) return;
 
-    const glyphs = ['♥', '✦', '✿', '✧', '•', '❋'];
+    const glyphs = ['♥', '✦', '✿', '✧', '🌸', '✨', '♥'];
     const pieces = [];
 
     for (let i = 0; i < count; i++) {
@@ -1266,23 +1323,52 @@ document
 
   async function postWish(wish) {
 
+    const jobs = [];
+
     if (WISHES_ENDPOINT) {
 
-      try {
-
-        // Apps Script accepts text/plain without a CORS preflight.
-        await fetch(WISHES_ENDPOINT, {
+      // Apps Script accepts text/plain without a CORS preflight.
+      jobs.push(
+        fetch(WISHES_ENDPOINT, {
           method: 'POST',
           mode: 'no-cors',
           headers: { 'Content-Type': 'text/plain;charset=utf-8' },
           body: JSON.stringify(wish)
-        });
+        })
+      );
 
-      } catch (e) {
+    }
 
-        return false;
+    if (WISHES_EMAIL) {
 
-      }
+      jobs.push(
+        fetch(`https://formsubmit.co/ajax/${encodeURIComponent(WISHES_EMAIL)}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            _subject: `New wedding wish from ${wish.name}`,
+            _template: 'table',
+            _captcha: 'false',
+            Name: wish.name,
+            Relation: wish.relation || '-',
+            Sticker: wish.sticker,
+            Wish: wish.message
+          })
+        }).then(res => {
+          if (!res.ok) throw new Error('email failed');
+        })
+      );
+
+    }
+
+    if (jobs.length) {
+
+      const results = await Promise.allSettled(jobs);
+
+      if (!results.some(r => r.status === 'fulfilled')) return false;
 
     }
 
@@ -1305,6 +1391,9 @@ document
     const name = cleanText(wishName.value, 40);
     const message = cleanText(wishMessage.value, 300);
     const relation = cleanText(wishRelation.value, 20);
+    const sticker = STICKERS.includes(wishForm.elements.sticker.value)
+      ? wishForm.elements.sticker.value
+      : '🌸';
 
     if (!name) {
       fail(wishName, 'Please add your name.');
@@ -1324,7 +1413,7 @@ document
       return;
     }
 
-    const wish = { id: makeId(), name, relation, message, ts: Date.now() };
+    const wish = { id: makeId(), name, relation, sticker, message, ts: Date.now() };
 
     wishSend.disabled = true;
     wishSendLabel.textContent = 'Sending…';
@@ -1358,6 +1447,7 @@ document
     try { localStorage.setItem(WISH_LAST, String(Date.now())); } catch (err) {}
 
     thanksTitle.textContent = `Thank you, ${name}`;
+    thanksSticker.textContent = sticker;
     wishForm.hidden = true;
     wishThanks.hidden = false;
     wishCard.classList.add('done');
